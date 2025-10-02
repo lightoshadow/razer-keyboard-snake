@@ -81,7 +81,7 @@ def main(stdscr):
         if segments[0] in segments[1:]:
             running = False
             stdscr.clear()
-            stdscr.addstr("GAME OVER! \nyou ate yourself")
+            stdscr.addstr(f"GAME OVER! \nyou ate yourself \nScore {lenght-1}")
             stdscr.refresh()
             stdscr.timeout(-1)
             stdscr.getch()
@@ -91,6 +91,9 @@ def main(stdscr):
             lenght += 1
             foodRow = randrange(0,lastRow)
             foodCol = randrange(1,lastCol)
+            while [foodRow, foodCol] in segments:
+                foodRow = randrange(0,lastRow)
+                foodCol = randrange(1,lastCol)
 
         segments.append((row, col))
         segments = segments[-lenght:]
